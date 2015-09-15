@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<style type="text/css">
+	.left {
+	float:left;
+	display:inline-block;
+}
+.right {
+	float:right;
+	display:inline-block;
+}
+.both {
+	clear: both;
+}
+.mainOne {
+	padding: 10px;
+	top:10px;
+}
+.mainTwo {
+	padding: 10px;
+	top:10px;
+}
+.mainTree {
+	height:50pt;
+	padding: 10px;
+}
+#tableWrapper {
+	width:100%;
+}
+#tableWrapper > tr {
+	margin: 10px 2px 10px 2px;
+	padding: 5px;
+}
+#tableWrapper>tr>td {
+	padding: 10px;
+}
+#player {
+	height:70px;
+	background: #555;
+	padding:10px;
+	margin-top: 35px;
+}
+#playSound {
+	padding:5px 10px;
+	border-radius:100%;
+}
+#pauseSound {
+	padding:5px 10px;
+	border-radius:100%;
+}
+#volume {
+	width:150px;
+	display:inline-block;
+	margin:10px 20px;
+}
+.active {
+	background: #999!important;
+}
+
+.button {
+	padding: 10px;
+	display: inline;
+	margin: 10px;
+	font-size:12px;
+}
+.add {
+	background: #339955;
+}
+#uploadForm {
+	float:left;
+	display: inline-block;
+}
+#deleteForm {
+	float:left;
+	display: inline-block;
+}
+#clear {
+	border: none;
+	position: absolute;
+	top: 98px;
+	left:177px;
+	height:37px;
+	font-size:12px;
+	padding:10px;
+}
+#buttonAdd {
+	position:absolute;
+	top:88px;
+	left:0px;
+	border:none;
+	color:#fff;
+	font-weight:bold;
+}
+#buttonDel {
+	border:none;
+	position:absolute;
+	top:88px;
+	left:90px;
+}
+#buttonDel:hover {
+	color:#fff;
+	background:#992255;
+}
+#clear:hover {
+	color: #fff;
+	background:#444;
+}
+#fileover {
+	margin-top:10px;
+}
+.image {
+	background-image: url('https://unsplash.it/900/400/?random');
+	background-size: cover;
+	-webkit-filter: brightness(55%);
+  filter: brightness(55%);
+  -o-filter: brightness(55%);
+  -moz-filter: brightness(55%);
+  height: 300px;
+  margin-top: -10px;
+}
+.text-block {
+  position: absolute;
+  color: #fff;
+  font-size: 72pt;
+  font-weight: bold;
+  left: 400px;
+  top: 325px;
+}
+.dscription {
+  position: absolute;
+  color: #fff;
+  font-size: 42pt;
+  font-weight: normal;
+  left: 400px;
+  top: 425px;
+  font-family: Helvetica;
+}
+@media all and (max-width:991px) {
+	#player {
+		margin-top:135px;
+	}
+}
+@media all and (max-width:900px) {
+	.dscription {
+		left: 100px;
+	}
+	.text-block {
+		left: 100px;
+	}
+}
+</style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="mainOne well col-md-12">
+			<form id='uploadForm' action="./php/upload.php" method="post" enctype="multipart/form-data" accept="audio/*">
+		      <input id="name" placeholder="song name">
+			  <input id="author" placeholder="author name">
+		      <input type="file" name="filename" id='fileover'><br> 
+		      <input type="button" style="margin:10px;" value="Загрузить" id="buttonAdd" class="button add"><br>
+		    </form>
+		    <form id='deleteForm' action="./php/delete.php" method="post">
+		      <input type="button" style="margin:10px;" value="Удалить" id="buttonDel" class="button"><br>
+		    </form>
+		    <button id="clear" hidden>Очистить список</button>
+			<div id="player" class="col-md-12">
+				<button id="playSound"><svg class="svg" width="10" height="10">
+    <symbol id="s-crown">
+        <path d="M 0,10 L 0,0 L 10,5 z"
+          fill="#0bf" stroke="#0bf" stroke-width="1"/>
+    </symbol>
+
+  <use xlink:href="#s-crown" x="0" y="0"/>
+</svg></button>
+				<button id="pauseSound"><svg width="10px" height="10px"><rect width="10px" height="10px" fill="#666"></rect></svg></button>
+				<input id="volume" oninput="changeVolumeLvl()" type="range" min="0" max="100" step="1" value="10" />
+			</div>
+			<table style="margin:10px;" id="tableWrapper">
+				<thead>
+					<tr>
+						<th>name</th>
+						<th>author</th>
+						<th>File</th>
+					</tr>
+					
+				</thead>
+				<tbody id="tableRow">
+				</tbody>
+			</table>
+			<button style="margin:10px;" id="sortItems" hidden>sort</button>
+		</div>
+		<div class="mainTwo well col-md-12 image">
+	    </div>
+	    <span class="text-block">Hello</span>
+		<span class="dscription">Welcome to App</span>
+		<div class="mainTree well col-md-12"><span id="elaps"></span></div>
+	</div>
+</div>
+<script src="./js/custom-script.js"></script>
+</body>
+</html>

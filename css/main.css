@@ -1,0 +1,51 @@
+.left {
+	float:left;
+	display:inline-block;
+}
+.right {
+	float:right;
+	display:inline-block;
+}
+.both {
+	clear: both;
+}
+.mainOne {
+	padding: 10px;
+	top:10px;
+}
+.mainTwo {
+	padding: 10px;
+	top:10px;
+}
+.mainTree {
+	height:50pt;
+	padding: 10px;
+}
+#tableWrapper {
+	width:100%;
+}
+#player {
+	height:70px;
+	background: #555;
+	padding:10px;
+}
+#playSound {
+	padding:5px;
+	border-radius:100%;
+}
+#pauseSound {
+	padding:5px;
+	border-radius:100%;
+}
+#volume {
+	width:150px;
+	display:inline-block;
+	margin:10px 20px;
+}
+.active {
+	background: #aaa!important;
+}
+
+td:focus {
+	background: #aaa!important;
+}
